@@ -1,8 +1,3 @@
-# Copyright IBM Corp. All Rights Reserved.
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-
 networks:
   test:
     name: fabric_test
@@ -21,7 +16,7 @@ services:
     ports:
       - "7054:7054"
       - "17054:17054"
-    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    command: sh -c 'KEYFILE=$(ls /etc/hyperledger/fabric-ca-server/keystore/*_sk) && fabric-ca-server start -b admin:adminpw --tls.certfile /etc/hyperledger/fabric-ca-server/ca-cert.pem --tls.keyfile $KEYFILE -d'
     volumes:
       - ../organizations/fabric-ca/org1:/etc/hyperledger/fabric-ca-server
     container_name: ca_org1
@@ -41,7 +36,7 @@ services:
     ports:
       - "8054:8054"
       - "18054:18054"
-    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    command: sh -c 'KEYFILE=$(ls /etc/hyperledger/fabric-ca-server/keystore/*_sk) && fabric-ca-server start -b admin:adminpw --tls.certfile /etc/hyperledger/fabric-ca-server/ca-cert.pem --tls.keyfile $KEYFILE -d'
     volumes:
       - ../organizations/fabric-ca/org2:/etc/hyperledger/fabric-ca-server
     container_name: ca_org2
@@ -61,7 +56,7 @@ services:
     ports:
       - "11054:11054"
       - "12054:12054"
-    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    command: sh -c 'KEYFILE=$(ls /etc/hyperledger/fabric-ca-server/keystore/*_sk) && fabric-ca-server start -b admin:adminpw --tls.certfile /etc/hyperledger/fabric-ca-server/ca-cert.pem --tls.keyfile $KEYFILE -d'
     volumes:
       - ../organizations/fabric-ca/org3:/etc/hyperledger/fabric-ca-server
     container_name: ca_org3
@@ -81,7 +76,7 @@ services:
     ports:
       - "9054:9054"
       - "19054:19054"
-    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    command: sh -c 'KEYFILE=$(ls /etc/hyperledger/fabric-ca-server/keystore/*_sk) && fabric-ca-server start -b admin:adminpw --tls.certfile /etc/hyperledger/fabric-ca-server/ca-cert.pem --tls.keyfile $KEYFILE -d'
     volumes:
       - ../organizations/fabric-ca/ordererOrg:/etc/hyperledger/fabric-ca-server
     container_name: ca_orderer

@@ -50,11 +50,7 @@ createChannelGenesisBlock() {
 	infoln "Generating channel genesis block using profile: $CHANNEL_PROFILE"
 	
 	set -x
-	if [ $bft_true -eq 1 ]; then
-		configtxgen -profile ChannelUsingBFT -outputBlock ./channel-artifacts/${CHANNEL_NAME}.block -channelID $CHANNEL_NAME
-	else
-		configtxgen -profile $CHANNEL_PROFILE -outputBlock ./channel-artifacts/${CHANNEL_NAME}.block -channelID $CHANNEL_NAME
-	fi
+	configtxgen -profile $CHANNEL_PROFILE -outputBlock ./channel-artifacts/${CHANNEL_NAME}.block -channelID $CHANNEL_NAME
 	res=$?
 	{ set +x; } 2>/dev/null
 	
