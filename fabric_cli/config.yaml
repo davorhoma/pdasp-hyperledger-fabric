@@ -1,0 +1,27 @@
+channel: channel1
+chaincode: trading
+profiles:
+    org1admin:
+        name: Org1 Admin
+        orgMSP: Org1MSP
+        peerEndpoint: localhost:7051
+        peerTLSCert: ../fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+        certPath: ../fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/cert.pem
+        keyPath: ../fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore
+        gatewayPeer: peer0.org1.example.com
+    org2admin:
+        name: Org2 Admin
+        orgMSP: Org2MSP
+        peerEndpoint: localhost:9051
+        peerTLSCert: ../fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
+        certPath: ../fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/cert.pem
+        keyPath: ../fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore
+        gatewayPeer: peer0.org2.example.com
+    org3admin:
+        name: Org3 Admin
+        orgMSP: Org3MSP
+        peerEndpoint: localhost:11051
+        peerTLSCert: ../fabric-samples/test-network/organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt
+        certPath: ../fabric-samples/test-network/organizations/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp/signcerts/cert.pem
+        keyPath: ../fabric-samples/test-network/organizations/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp/keystore
+        gatewayPeer: peer0.org3.example.com
