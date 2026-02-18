@@ -200,3 +200,14 @@ func (t *TradingContract) Deposit(ctx contractapi.TransactionContextInterface,
 		return services.ErrInvalidInput
 	}
 }
+
+func (t *TradingContract) GetUserByID(ctx contractapi.TransactionContextInterface, userID string) (*models.User, error) {
+	userBytes, err := ctx.GetStub().GetState("USER_" + userID)
+	if err != nil || userBytes == nil {
+		return nil, services.ErrNotFound
+	}
+
+	var user models.User
+	_ = json.Unmarshal(userBytes, &user)
+	return &user, nil
+}
