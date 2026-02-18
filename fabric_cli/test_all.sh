@@ -185,3 +185,37 @@ echo ""
 echo -e "${GREEN}══════════════════════════════════════════${NC}"
 echo -e "${GREEN}  All tests passed! ✓${NC}"
 echo -e "${GREEN}══════════════════════════════════════════${NC}"
+
+# ─────────────────────────────────────────────────────────────────────────────
+section "0.5. Register & Enroll User  [Org1Admin]"
+# ─────────────────────────────────────────────────────────────────────────────
+BASE_DIR=$(pwd)
+
+ADMIN_MSP="$BASE_DIR/../fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp"
+CA_CERT="$BASE_DIR/../fabric-samples/test-network/organizations/fabric-ca/org1/ca-cert.pem"
+
+USERNAME="davor"
+PASSWORD="davor123"
+
+ENROLL_DIR="$BASE_DIR/wallet/Org1MSP/${USERNAME}/msp"
+
+echo "→ Registering user ${USERNAME} via Fabric CA"
+
+FABRIC_CA_CLIENT_HOME="$ADMIN_MSP" \
+fabric-ca-client register \
+  --id.name "$USERNAME" \
+  --id.secret "$PASSWORD" \
+  --id.type client \
+  -u https://localhost:7054 \
+  --caname ca-org1 \
+  --tls.certfiles "$CA_CERT"
+
+echo "→ Enrolling user ${USERNAME}..."
+FABRIC_CA_CLIENT_HOME="$ADMIN_MSP" \
+fabric-ca-client enroll \
+  -u https://${USERNAME}:${PASSWORD}@localhost:7054 \
+  --caname ca-org1 \
+  --tls.certfiles "$CA_CERT" \
+  -M "$ENROLL_DIR"
+
+echo "✓ User '${USERNAME}' enrolled successfully in $ENROLL_DIR"
