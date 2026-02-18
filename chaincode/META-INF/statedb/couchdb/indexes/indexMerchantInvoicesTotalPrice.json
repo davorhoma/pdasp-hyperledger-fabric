@@ -1,0 +1,8 @@
+{
+  "index": {
+    "fields": ["docType", "merchantId", "totalPrice"]
+  },
+  "ddoc": "indexMerchantInvoicesTotalPrice",
+  "name": "indexMerchantInvoicesTotalPrice",
+  "type": "json"
+}

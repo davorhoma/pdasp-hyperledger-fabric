@@ -1,0 +1,8 @@
+{
+  "index": {
+    "fields": ["docType", "expiration"]
+  },
+  "ddoc": "indexProductsExpiration",
+  "name": "indexProductsExpiration",
+  "type": "json"
+}
